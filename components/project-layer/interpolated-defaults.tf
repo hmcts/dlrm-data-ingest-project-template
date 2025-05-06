@@ -15,3 +15,12 @@ data "azurerm_subnet" "lz" {
   resource_group_name  = data.azurerm_resource_group.lz["ingest${each.value.lz_key}-network-${var.env}"].name
   name                 = each.value.name
 }
+
+module "ctags" {
+  source = "github.com/hmcts/terraform-module-common-tags"
+
+  builtFrom    = var.builtFrom
+  environment  = var.env
+  product      = var.product
+  expiresAfter = "3000-01-01"
+}
