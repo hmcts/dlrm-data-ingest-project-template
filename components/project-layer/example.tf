@@ -3,8 +3,8 @@
 resource "azurerm_storage_account" "this" {
   for_each                 = var.landing_zones
   name                     = "ingest${each.key}${var.env}example"
-  resource_group_name      = data.azurerm_resource_group.this["ingest${each.key}-main-${var.env}"].name
-  location                 = data.azurerm_resource_group.this["ingest${each.key}-main-${var.env}"].location
+  resource_group_name      = data.azurerm_resource_group.lz["ingest${each.key}-main-${var.env}"].name
+  location                 = data.azurerm_resource_group.lz["ingest${each.key}-main-${var.env}"].location
   account_tier             = "Standard"
   account_kind             = "StorageV2"
   account_replication_type = "LRS"
